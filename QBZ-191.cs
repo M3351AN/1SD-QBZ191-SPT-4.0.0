@@ -1,4 +1,4 @@
-// 修改说明:
+﻿// 修改说明:
 // 1.移植到4.0啦
 // 2.能装FHU191的地方，应该就能装FH191才对，反之亦然
 //   美帝的枪口你都能兼容，难道还不兼容自家的嘛？
@@ -12,6 +12,9 @@
 // 2.你在导轨照门位装M4提把的话，你再装个镜子那必然穿模的。
 // 3.原mod如果有商人和预设之类的。。。那就是我没搬
 //
+// 1.0.2更新内容：
+// 补全了忘记搬的QBZ原厂缓冲管
+
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
@@ -32,7 +35,7 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "1SD-QBZ191";
     public override string Author { get; init; } = "saintdeer";
     public override List<string>? Contributors { get; init; } = new List<string>(){"Ukia"};
-    public override SemanticVersioning.Version Version { get; init; } = new("1.0.1");
+    public override SemanticVersioning.Version Version { get; init; } = new("1.0.2");
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
@@ -3086,6 +3089,126 @@ public class QBZ191Mod(
         };
 
         customItemService.CreateItemFromClone(qtaStock);
+
+        // QBZ-191 标准缓冲管
+        var qbzBufferTube = new NewItemFromCloneDetails
+        {
+            ItemTplToClone = "5649b0fc4bdc2d17108b4588",
+            ParentId = "55818a594bdc2db9688b456a",
+            NewId = "fc90d0bc91c7fa464257d9e8",
+            FleaPriceRoubles = 15624,
+            HandbookPriceRoubles = 15624,
+            HandbookParentId = "5b5f757486f774093e6cb507",
+            Locales = new Dictionary<string, LocaleDetails>
+            {
+                ["en"] = new()
+                {
+                    Name = "QBZ-191 standard buffer tube",
+                    ShortName = "QBZ TUBE",
+                    Description = "Buffer tube for QBZ-191/192 in standard configuration"
+                },
+                ["ch"] = new()
+                {
+                    Name = "QBZ-191 标准缓冲管",
+                    ShortName = "QBZ TUBE",
+                    Description = "QBZ-191/192的标准缓冲管"
+                }
+            },
+            OverrideProperties = new TemplateItemProperties
+            {
+                Prefab = new Prefab
+                {
+                    Path = "assets/q191/buffer_tube_q191_std.bundle",
+                    Rcid = ""
+                },
+                Weight = 0.462f,
+                Ergonomics = 1,
+                Recoil = -2,
+                BackgroundColor = "blue",
+                Width = 2,
+                Height = 1,
+                StackMaxSize = 1,
+                StackObjectsCount = 1,
+                ItemSound = "mod",
+                Durability = 100,
+                Accuracy = 0,
+                Loudness = 0,
+                EffectiveDistance = 0,
+                Velocity = 0,
+                RaidModdable = true,
+                ToolModdable = true,
+                BlocksFolding = false,
+                BlocksCollapsible = false,
+                IsAnimated = true,
+                HasShoulderContact = true,
+                IsShoulderContact = true,
+                SightingRange = 0,
+                DoubleActionAccuracyPenaltyMult = 1,
+                UniqueAnimationModID = 0,
+                Foldable = false,
+                Retractable = false,
+                SizeReduceRight = 0,
+                DurabilityBurnModificator = 1,
+                HeatFactor = 1,
+                CoolFactor = 1,
+                ExtraSizeLeft = 0,
+                ExtraSizeRight = 1,
+                ExtraSizeUp = 0,
+                ExtraSizeDown = 0,
+                ExtraSizeForceAdd = false,
+                NotShownInSlot = false,
+                ExaminedByDefault = true,
+                ExamineTime = 1,
+                ExamineExperience = 2,
+                IsUndiscardable = false,
+                IsUnsaleable = false,
+                IsUnbuyable = false,
+                IsUngivable = false,
+                QuestItem = false,
+                LootExperience = 10,
+                HideEntrails = false,
+                RepairCost = 0,
+                RepairSpeed = 0,
+                MergesWithChildren = true,
+                CanSellOnRagfair = true,
+                CanRequireOnRagfair = false,
+                RagFairCommissionModifier = 1,
+                IsAlwaysAvailableForInsurance = false,
+                DiscardLimit = -1,
+                InsuranceDisabled = false,
+                QuestStashMaxCount = 0,
+                IsSpecialSlotOnly = false,
+                CanPutIntoDuringTheRaid = true,
+                Slots =
+                [
+                    new Slot
+            {
+                Name = "mod_stock",
+                Id = "5c793fb92e221644f31bfb66",
+                Parent = "5c793fb92e221644f31bfb64",
+                Properties = new SlotProperties
+                {
+                    Filters =
+                    [
+                        new SlotFilter
+                        {
+                            Shift = 0,
+                            Filter =
+                            [
+                                "5fc2369685fd526b824fe2a1"
+                            ]
+                        }
+                    ]
+                },
+                Required = false,
+                MergeSlotWithChildren = false,
+                Prototype = "55d30c4c4bdc2db4468b457e"
+            }
+                ]
+            }
+        };
+
+        customItemService.CreateItemFromClone(qbzBufferTube);
 
         // 标准枪托
         var stdStock = new NewItemFromCloneDetails
