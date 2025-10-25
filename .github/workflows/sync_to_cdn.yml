@@ -37,7 +37,15 @@ jobs:
           token: ${{ secrets.CDN_REPO_TOKEN }}
           ref: ${{ env.CDN_BRANCH }}
           path: cdn-repo
-
+          
+      - name: Setup Git LFS
+        run: |
+          cd cdn-repo
+          git lfs install
+          git lfs track "*.zip"
+          git add .gitattributes
+          git commit -m "Configure Git LFS for zip files" || echo "No changes to commit"
+          
       - name: Create Target Directory in CDN
         run: |
           mkdir -p "cdn-repo/${{ steps.set_paths.outputs.target_path }}"
