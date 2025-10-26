@@ -1,4 +1,4 @@
-﻿// 修改说明:
+// 修改说明:
 // 1.移植到4.0啦
 // 2.能装FHU191的地方，应该就能装FH191才对，反之亦然
 //   美帝的枪口你都能兼容，难道还不兼容自家的嘛？
@@ -39,9 +39,9 @@ public record ModMetadata : AbstractModMetadata
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; }
+    public override string? Url { get; init; } = "https://github.com/M3351AN/1SD-QBZ191-SPT-4.0.0";
     public override bool? IsBundleMod { get; init; } = true;
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
@@ -75,7 +75,7 @@ public class QBZ191Mod(
 
     private void CreateWeapon()
     {
-        var weaponDetails = new NewItemFromCloneDetails
+        var weaponQBZ191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "618428466ef05c2ce828f218",
             ParentId = "5447b5f14bdc2d61278b4567",
@@ -325,12 +325,12 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(weaponDetails);
+        customItemService.CreateItemFromClone(weaponQBZ191);
     }
 
     private void CreateUpperReceiver()
     {
-        var upperDetails = new NewItemFromCloneDetails
+        var upperReceiverQBZ191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "618405198004cc50514c3594",
             ParentId = "55818a304bdc2db5418b457d",
@@ -616,13 +616,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(upperDetails);
+        customItemService.CreateItemFromClone(upperReceiverQBZ191);
     }
 
     private void CreatePistolGrips()
     {
         // 标准握把
-        var stdGrip = new NewItemFromCloneDetails
+        var gripQBZ191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649ade84bdc2d1b2b8b4587",
             ParentId = "55818a684bdc2ddd698b456d",
@@ -706,10 +706,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(stdGrip);
+        customItemService.CreateItemFromClone(gripQBZ191);
 
         // 龙鳞握把
-        var customGrip = new NewItemFromCloneDetails
+        var gripLongLin = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649ade84bdc2d1b2b8b4587",
             ParentId = "55818a684bdc2ddd698b456d",
@@ -793,13 +793,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(customGrip);
+        customItemService.CreateItemFromClone(gripLongLin);
     }
 
     private void CreateHandguards()
     {
         // 标准护木
-        var stdHandguard = new NewItemFromCloneDetails
+        var handguardQBZ191STD = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d3632e4bdc2d972f8b4569",
             ParentId = "55818a104bdc2db9688b4569",
@@ -1009,10 +1009,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(stdHandguard);
+        customItemService.CreateItemFromClone(handguardQBZ191STD);
 
         // DMR护木
-        var dmrHandguard = new NewItemFromCloneDetails
+        var handguardQBU191STD = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d3632e4bdc2d972f8b4569",
             ParentId = "55818a104bdc2db9688b4569",
@@ -1293,10 +1293,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(dmrHandguard);
+        customItemService.CreateItemFromClone(handguardQBU191STD);
 
         // TacYL 龙鳞II型护木（长款）
-        var longlinHandguard = new NewItemFromCloneDetails
+        var handguardLongLin = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d3632e4bdc2d972f8b4569",
             ParentId = "55818a104bdc2db9688b4569",
@@ -1546,10 +1546,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(longlinHandguard);
+        customItemService.CreateItemFromClone(handguardLongLin);
 
         // TacYL 龙渊II型护木（短款）
-        var longyuanHandguard = new NewItemFromCloneDetails
+        var handguardLongYuan = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d3632e4bdc2d972f8b4569",
             ParentId = "55818a104bdc2db9688b4569",
@@ -1799,13 +1799,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(longyuanHandguard);
+        customItemService.CreateItemFromClone(handguardLongYuan);
     }
 
     private void CreateMagazines()
     {
         // 30发标准弹匣
-        var stdMag = new NewItemFromCloneDetails
+        var magazine30 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d482194bdc2d1d4e8b456b",
             ParentId = "5448bc234bdc2d3c308b4569",
@@ -1932,10 +1932,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(stdMag);
+        customItemService.CreateItemFromClone(magazine30);
 
         // 40发扩容弹匣
-        var extMag = new NewItemFromCloneDetails
+        var magazine40 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d482194bdc2d1d4e8b456b",
             ParentId = "5448bc234bdc2d3c308b4569",
@@ -2062,10 +2062,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(extMag);
+        customItemService.CreateItemFromClone(magazine30);
 
         // 60发扩容弹匣
-        var ext60Mag = new NewItemFromCloneDetails
+        var magazine60 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "55d482194bdc2d1d4e8b456b",
             ParentId = "5448bc234bdc2d3c308b4569",
@@ -2192,13 +2192,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(ext60Mag);
+        customItemService.CreateItemFromClone(magazine30);
     }
 
     private void CreateBarrels()
     {
         // 270mm短枪管
-        var shortBarrel = new NewItemFromCloneDetails
+        var barrel270 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "6183fd911cb55961fa0fdce9",
             ParentId = "555ef6e44bdc2de9068b457e",
@@ -2366,10 +2366,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(shortBarrel);
+        customItemService.CreateItemFromClone(barrel270);
 
         // 370mm标准枪管
-        var stdBarrel = new NewItemFromCloneDetails
+        var barrel370 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "6183b0711cb55961fa0fdcad",
             ParentId = "555ef6e44bdc2de9068b457e",
@@ -2537,10 +2537,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(stdBarrel);
+        customItemService.CreateItemFromClone(barrel370);
 
         // QBU-191 500mm枪管
-        var dmrBarrel = new NewItemFromCloneDetails
+        var barrel500 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "6183b0711cb55961fa0fdcad",
             ParentId = "555ef6e44bdc2de9068b457e",
@@ -2709,13 +2709,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(dmrBarrel);
+        customItemService.CreateItemFromClone(barrel500);
     }
 
     private void CreateStocks()
     {
         // AR15兼容缓冲管
-        var bufferTube = new NewItemFromCloneDetails
+        var bufferTubeAR15 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649b0fc4bdc2d17108b4588",
             ParentId = "55818a594bdc2db9688b456a",
@@ -2859,7 +2859,7 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(bufferTube);
+        customItemService.CreateItemFromClone(bufferTubeAR15);
 
         // QBZ-191 AR15缓冲管基座
         var bufferTubeAdapter = new NewItemFromCloneDetails
@@ -2997,7 +2997,7 @@ public class QBZ191Mod(
         customItemService.CreateItemFromClone(bufferTubeAdapter);
 
         // QBZ-191 QT-A枪托
-        var qtaStock = new NewItemFromCloneDetails
+        var stockQTA = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649b0fc4bdc2d17108b4588",
             ParentId = "55818a594bdc2db9688b456a",
@@ -3088,10 +3088,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(qtaStock);
+        customItemService.CreateItemFromClone(stockQTA);
 
         // QBZ-191 标准缓冲管
-        var qbzBufferTube = new NewItemFromCloneDetails
+        var bufferTubeQBZ = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649b0fc4bdc2d17108b4588",
             ParentId = "55818a594bdc2db9688b456a",
@@ -3208,10 +3208,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(qbzBufferTube);
+        customItemService.CreateItemFromClone(bufferTubeQBZ);
 
         // 标准枪托
-        var stdStock = new NewItemFromCloneDetails
+        var stockQBZ = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5649b0fc4bdc2d17108b4588",
             ParentId = "55818a594bdc2db9688b456a",
@@ -3302,13 +3302,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(stdStock);
+        customItemService.CreateItemFromClone(stockQBZ);
     }
 
     private void CreateGasBlocks()
     {
         // 标准导气箍
-        var gasBlock = new NewItemFromCloneDetails
+        var gasBlockQBZ191GB = new NewItemFromCloneDetails
         {
             ItemTplToClone = "56ea8d2fd2720b7c698b4570",
             ParentId = "56ea9461d2720b67698b456f",
@@ -3395,10 +3395,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(gasBlock);
+        customItemService.CreateItemFromClone(gasBlockQBZ191GB);
 
         // DMR导气箍
-        var dmrGasBlock = new NewItemFromCloneDetails
+        var gasBlockQBU191GB = new NewItemFromCloneDetails
         {
             ItemTplToClone = "56ea8d2fd2720b7c698b4570",
             ParentId = "56ea9461d2720b67698b456f",
@@ -3485,13 +3485,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(dmrGasBlock);
+        customItemService.CreateItemFromClone(gasBlockQBU191GB);
     }
 
     private void CreateSights()
     {
         // 前准星
-        var frontSight = new NewItemFromCloneDetails
+        var frontSight191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5ae099875acfc4001714e593",
             ParentId = "55818ac54bdc2d5b648b456e",
@@ -3578,10 +3578,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(frontSight);
+        customItemService.CreateItemFromClone(frontSight191);
 
         // QBZ-191后照门
-        var rearSight = new NewItemFromCloneDetails
+        var rearSight191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "5ae099875acfc4001714e593",
             ParentId = "55818ac54bdc2d5b648b456e",
@@ -3682,13 +3682,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(rearSight);
+        customItemService.CreateItemFromClone(rearSight191);
     }
 
     private void CreateMuzzles()
     {
         // 标准消焰器
-        var flashHider = new NewItemFromCloneDetails
+        var muzzleFH191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "626667e87379c44d557b7550",
             ParentId = "550aa4bf4bdc2dd6348b456b",
@@ -3759,10 +3759,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(flashHider);
+        customItemService.CreateItemFromClone(muzzleFH191);
 
         // QBU-191消焰器
-        var flashHiderQBU = new NewItemFromCloneDetails
+        var muzzleFHU191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "626667e87379c44d557b7550",
             ParentId = "550aa4bf4bdc2dd6348b456b",
@@ -3833,13 +3833,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(flashHiderQBU);
+        customItemService.CreateItemFromClone(muzzleFHU191);
     }
 
     private void CreateRail()
     {
         // QBU-191导轨
-        var rail = new NewItemFromCloneDetails
+        var railQBU191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "59e0bed186f774156f04ce84",
             ParentId = "550aa4bf4bdc2dd6348b456b",
@@ -3879,12 +3879,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(rail);
+        customItemService.CreateItemFromClone(railQBU191);
     }
+
     private void CreateSuppressor()
     {
         // 消音器
-        var suppressor = new NewItemFromCloneDetails
+        var suppressor191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "626673016f1edc06f30cf6d5",
             ParentId = "550aa4cd4bdc2dd8348b456c",
@@ -3944,13 +3945,13 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(suppressor);
+        customItemService.CreateItemFromClone(suppressor191);
     }
 
     private void CreateAmmo()
     {
         // DBP-191弹药
-        var ammo191 = new NewItemFromCloneDetails
+        var ammoDBP191 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "54527ac44bdc2d36668b4567",
             ParentId = "5485a8684bdc2da71d8b4567",
@@ -4048,10 +4049,10 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(ammo191);
+        customItemService.CreateItemFromClone(ammoDBP191);
 
         // DBU-141弹药
-        var ammo141 = new NewItemFromCloneDetails
+        var ammoDBP141 = new NewItemFromCloneDetails
         {
             ItemTplToClone = "61962b617c6c7b169525f168",
             ParentId = "5485a8684bdc2da71d8b4567",
@@ -4194,7 +4195,7 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(ammo141);
+        customItemService.CreateItemFromClone(ammoDBP141);
 
         // DVC-12弹药
         var ammoDVC12 = new NewItemFromCloneDetails
