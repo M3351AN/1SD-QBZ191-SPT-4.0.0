@@ -2062,7 +2062,7 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(magazine30);
+        customItemService.CreateItemFromClone(magazine40);
 
         // 60发扩容弹匣
         var magazine60 = new NewItemFromCloneDetails
@@ -2192,7 +2192,7 @@ public class QBZ191Mod(
             }
         };
 
-        customItemService.CreateItemFromClone(magazine30);
+        customItemService.CreateItemFromClone(magazine60);
     }
 
     private void CreateBarrels()
